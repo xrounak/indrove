@@ -1,7 +1,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
-import "./app.css";
+import "./App.css";
 import { useNavigate } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes"; // ✅ Fixed import
 import { Suspense } from "react";
