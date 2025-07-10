@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styles from "./Auth.module.css";
 import { useAuthActions } from "../../../hooks/useAuth";
+import { GoogleButton } from "../../../components/ui/ContinueWithGoogle";
 
 export default function Register({ onFlip }) {
-  const { registerWithEmailAndPassword } = useAuthActions();
+  const { registerWithEmailAndPassword, signInWithGoogle } = useAuthActions();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,19 +22,26 @@ export default function Register({ onFlip }) {
     }
 
     try {
-      // You can adjust the role based on context — here using "client"
-      const user = await registerWithEmailAndPassword(
-        email,
-        password,
-        "client"
-      );
-
-      // Optionally update name (if used in your Firestore schema)
+      const user = await registerWithEmailAndPassword(email, password, "client");
+      console.log("✅ Registered:", user?.email);
       setSuccess("🎉 Registered successfully!");
-      setTimeout(onFlip, 1500); // Flip to login form
+      setTimeout(onFlip, 1500);
     } catch (error) {
-      console.error(error);
+      console.error("❌ Registration error:", error);
       setErr(error.message || "Registration failed");
+    }
+  };
+
+  const handleGoogleRegister = async () => {
+    setErr("");
+    setSuccess("");
+    try {
+      await signInWithGoogle("client");
+      setSuccess("🎉 Registered successfully!");
+      setTimeout(onFlip, 1500);
+    } catch (error) {
+      console.error("❌ Google registration error:", error);
+      setErr(error.message || "Google registration failed");
     }
   };
 
@@ -80,6 +88,13 @@ export default function Register({ onFlip }) {
       <p className={styles.textSwitch}>
         Already have an account? <span onClick={onFlip}>Login</span>
       </p>
+
+      <div className="relative my-4 w-full flex items-center justify-center">
+        <div className="absolute w-full h-px bg-neutral-700" />
+        <span className="bg-[#1f1f1f] px-4 text-xs text-neutral-400 z-10">or</span>
+      </div>
+
+      <GoogleButton onClick={handleGoogleRegister} />
     </form>
   );
 }

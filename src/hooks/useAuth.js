@@ -27,7 +27,7 @@ export const useAuthActions = () => {
       handleWithLoading(() => signUpWithEmail(email, password, role)),
 
     signInWithGoogle: (role) =>
-      handleWithLoading(() => loginWithGoogle(role)),
+      handleWithLoading(() => loginWithGoogle(role = "client")),
 
     logout: () => handleWithLoading(() => logoutUser()),
   };

@@ -5,13 +5,12 @@ import { useAuth } from "../../../context/AuthContext";
 import { getUserData } from "../../../services/authService";
 import { useAuthActions } from "../../../hooks/useAuth";
 import { useUILoading } from "../../../context/UILoadingContext ";
-
+import { GoogleButton } from "../../../components/ui/ContinueWithGoogle";
 
 export default function Login({ onFlip }) {
-
-  const {loginWithEmailAndPassword} = useAuthActions();
+  const { loginWithEmailAndPassword, signInWithGoogle } = useAuthActions();
   const { startLoading, stopLoading } = useUILoading();
-  const { setUser, setUserData } = useAuth(); // optionally if setUser is exposed
+  const { setUser, setUserData } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
@@ -20,22 +19,37 @@ export default function Login({ onFlip }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     setErr("");
+    startLoading();
 
     try {
       const user = await loginWithEmailAndPassword(email, password);
       console.log("✅ Logged in as:", user.email);
 
-      // Optional: fetch and set user data if needed manually
       const data = await getUserData(user.uid);
-      if (setUserData) setUserData(data); // in case context exposes it
+      if (setUserData) setUserData(data);
       if (setUser) setUser(user);
-      startLoading();
 
-      navigate("/"); // ✅ go to dashboard/home
-      stopLoading();
+      navigate("/");
     } catch (error) {
       console.error("❌ Login error:", error);
       setErr(error.message || "Login failed");
+    } finally {
+      stopLoading();
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setErr("");
+    startLoading();
+
+    try {
+      await signInWithGoogle("client"); // default role
+      navigate("/");
+    } catch (error) {
+      console.error("❌ Google login error:", error);
+      setErr(error.message || "Google login failed");
+    } finally {
+      stopLoading();
     }
   };
 
@@ -72,6 +86,13 @@ export default function Login({ onFlip }) {
       <p className={styles.textSwitch}>
         Don&apos;t have an account? <span onClick={onFlip}>Register</span>
       </p>
+
+      <div className="relative my-4 w-full flex items-center justify-center">
+        <div className="absolute w-full h-px bg-neutral-700" />
+        <span className="bg-[#1f1f1f] px-4 text-xs text-neutral-400 z-10">or</span>
+      </div>
+
+      <GoogleButton onClick={handleGoogleLogin} />
     </form>
   );
 }

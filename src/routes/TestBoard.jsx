@@ -1,31 +1,37 @@
 // src/routes/TestBoard.jsx
+import styles from "./TestBoard.module.css";
+
 export const TestBoard = ({ user, userData, onClick, vistauth }) => {
   return (
-    <div className="container p-4">
-      <h1 className="text-2xl font-bold mb-4">Welcome</h1>
+    <div className={styles.container}>
+      <h1 className={styles.heading}>Welcome to Indorve</h1>
 
       {user ? (
-        <>
-          <p className="text-sm mb-1">Logged in as: {user.email}</p>
-          <p className="text-sm mb-4">Role: {userData?.role}</p>
-          <button
-            type="button"
-            onClick={onClick}
-            className="px-4 py-2 bg-red-500 text-white rounded"
-          >
+        <div className={styles.profileCard}>
+          <img
+            src={user.photoURL || "https://multiavatar.com/16134ee2854c2083a6"}
+            alt="Profile"
+            className={styles.avatar}
+          />
+
+          <div className={styles.details}>
+            <p><strong>Name:</strong> {user.displayName || userData?.name || "N/A"}</p>
+            <p><strong>Email:</strong> {user.email}</p>
+            <p><strong>Role:</strong> {userData?.role || "Unknown"}</p>
+            <p><strong>UID:</strong> {user.uid}</p>
+          </div>
+
+          <button className={styles.logoutBtn} onClick={onClick}>
             Log Out
           </button>
-        </>
+        </div>
       ) : (
-        <>
-          <p className="text-base mb-2">You're not logged in.</p>
-          <button
-            className="px-4 py-2 bg-blue-600 text-white rounded"
-            onClick={vistauth}
-          >
+        <div className={styles.notLoggedIn}>
+          <p>You are not logged in.</p>
+          <button className={styles.getStartedBtn} onClick={vistauth}>
             Get Started
           </button>
-        </>
+        </div>
       )}
     </div>
   );
