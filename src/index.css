@@ -1,1 +1,140 @@
 @import "tailwindcss";
+
+/* Font Loading and Fallbacks */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* System Font Stack */
+@font-face {
+  font-family: 'System UI';
+  src: local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI'), local('Roboto'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+  font-display: swap;
+}
+
+/* Font Loading Optimization */
+html {
+  font-display: swap;
+}
+
+html.fonts-loaded {
+  font-display: auto;
+}
+
+:root {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: dark;
+  color: #b5b5b5;
+  background-color: #0f172a;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #0f172a;
+  color: #b5b5b5;
+  transition: background 0.3s, color 0.3s;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  padding-top: 80px; /* Account for fixed navbar */
+  font-display: swap;
+}
+
+/* Font loading transition */
+html.fonts-loaded body {
+  transition: font-family 0.3s ease;
+}
+
+a {
+  color: #14b8a6;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: inherit;
+}
+
+a:hover {
+  color: #0d9488;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.5em 0;
+  line-height: 1.2;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  letter-spacing: -0.025em;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #14b8a6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0d9488;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(20, 184, 166, 0.3);
+  color: white;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+}

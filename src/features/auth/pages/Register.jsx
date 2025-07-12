@@ -8,6 +8,7 @@ export default function Register({ onFlip }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("client");
   const [err, setErr] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -22,7 +23,7 @@ export default function Register({ onFlip }) {
     }
 
     try {
-      const user = await registerWithEmailAndPassword(email, password, "client");
+      const user = await registerWithEmailAndPassword(email, password, role);
       console.log("✅ Registered:", user?.email);
       setSuccess("🎉 Registered successfully!");
       setTimeout(onFlip, 1500);
@@ -36,7 +37,7 @@ export default function Register({ onFlip }) {
     setErr("");
     setSuccess("");
     try {
-      await signInWithGoogle("client");
+      await signInWithGoogle(role);
       setSuccess("🎉 Registered successfully!");
       setTimeout(onFlip, 1500);
     } catch (error) {
@@ -48,6 +49,35 @@ export default function Register({ onFlip }) {
   return (
     <form className={styles.form} onSubmit={handleRegister}>
       <h2 className={styles.title}>Register</h2>
+
+      {/* === ROLE TOGGLE === */}
+      <div className={styles.roleToggle}>
+        <input
+          type="radio"
+          id="client"
+          name="role"
+          value="client"
+          checked={role === "client"}
+          onChange={() => setRole("client")}
+          className={styles.radioInput}
+        />
+        <label htmlFor="client" className={styles.radioLabel}>
+          Hire
+        </label>
+
+        <input
+          type="radio"
+          id="freelancer"
+          name="role"
+          value="freelancer"
+          checked={role === "freelancer"}
+          onChange={() => setRole("freelancer")}
+          className={styles.radioInput}
+        />
+        <label htmlFor="freelancer" className={styles.radioLabel}>
+          Earn
+        </label>
+      </div>
 
       {err && <p className={styles.error}>{err}</p>}
       {success && <p className={styles.success}>{success}</p>}
@@ -82,7 +112,7 @@ export default function Register({ onFlip }) {
       />
 
       <button type="submit" className={styles.actionBtn}>
-        Register
+        Register as {role.charAt(0).toUpperCase() + role.slice(1)}
       </button>
 
       <p className={styles.textSwitch}>

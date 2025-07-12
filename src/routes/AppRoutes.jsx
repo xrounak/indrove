@@ -1,73 +1,40 @@
 // src/routes/AppRoutes.jsx
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { useAuthActions } from "../hooks/useAuth";
-import { Layout } from "./Layout";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Auth from "../features/auth/pages/Auth";
-import { TestBoard } from "./TestBoard";
-import { useUILoading } from "../context/UILoadingContext ";
+import { ProtectedRoute } from "./ProtectedRoute";
+import HireRoutes from "./Hire";
+import WorkRoutes from "./Work";
+import Home from "../components/Home/Home";
 
 export default function AppRoutes() {
-  const navigate = useNavigate();
-  const { user, userData } = useAuth();
-  const { logout } = useAuthActions();
-  const { startLoading, stopLoading } = useUILoading();
-
-  const redirectToAuth = () => {
-    startLoading();
-    console.log("Redirecting to /auth");
-    navigate("/auth", { replace: true });
-    stopLoading();
-  };
-
   return (
-    <Layout>
-      <Routes>
-        {/* Auth Page */}
-        <Route path="/auth" element={<Auth />} />
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/" element={<Home />}></Route>
+      <Route path="/auth" element={<Auth />} />
 
-        {/* Not logged in */}
-        {!user && (
-          <Route
-            path="*"
-            element={
-              <TestBoard
-                user={null}
-                userData={null}
-                vistauth={redirectToAuth}
-              />
-            }
-          />
-        )}
+      {/* Client Routes */}
+      <Route
+        path="/HireRoutes/*"
+        element={
+          <ProtectedRoute role="client">
+            <HireRoutes />
+          </ProtectedRoute>
+        }
+      />
 
-        {/* Client Dashboard */}
-        {user && userData?.role === "client" && (
-          <Route
-            path="/*"
-            element={
-              <TestBoard
-                user={user}
-                userData={userData}
-                onClick={logout}
-              />
-            }
-          />
-        )}
+      {/* Freelancer Routes */}
+      <Route
+        path="/WorkRoutes/*"
+        element={
+          <ProtectedRoute role="freelancer">
+            <WorkRoutes />
+          </ProtectedRoute>
+        }
+      />
 
-        {/* Freelancer Dashboard */}
-        {user && userData?.role === "freelancer" && (
-          <Route
-            path="/*"
-            element={
-              <TestBoard
-                user={user}
-                userData={userData}
-                onClick={logout}
-              />
-            }
-          />
-        )}
-      </Routes>
-    </Layout>
+      {/* Catch-all */}
+      <Route path="*" element={<Navigate to="/auth" />} />
+    </Routes>
   );
 }

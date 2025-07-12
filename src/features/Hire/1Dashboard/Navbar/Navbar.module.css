@@ -1,0 +1,124 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(24, 24, 27, 0.92);
+  color: #f3f4f6;
+  padding: 0.7rem 1.2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  z-index: 2000;
+  box-shadow: 0 2px 16px 0 rgba(20,184,166,0.08);
+  min-height: 48px;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(51,65,85,0.18);
+}
+.leftGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.logo {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: white;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.2rem;
+  z-index: 2100;
+}
+.hamburgerBar, .hamburgerBarActive {
+  width: 22px;
+  height: 3px;
+  background: #b5b5b5;
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.hamburgerBarActive:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.hamburgerBarActive:nth-child(2) {
+  opacity: 0;
+}
+.hamburgerBarActive:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+@media (max-width: 1023px) {
+  .hamburger {
+    display: flex;
+  }
+}
+.userGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.userName {
+  font-weight: 500;
+  color: #b5b5b5;
+  font-size: 0.97rem;
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #14b8a6;
+}
+.logoutBtn {
+  background: #23232a;
+  color: #14b8a6;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  font-size: 0.97rem;
+}
+.logoutBtn:hover {
+  background: #14b8a6;
+  color: #fff;
+}
+.notifications {
+  margin-left: 0.7rem;
+  color: #b5b5b5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.bellIcon {
+  width: 22px;
+  height: 22px;
+}
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.4rem 0.6rem;
+    min-height: 40px;
+  }
+  .logo {
+    font-size: 1rem;
+  }
+  .avatar {
+    width: 26px;
+    height: 26px;
+  }
+} 

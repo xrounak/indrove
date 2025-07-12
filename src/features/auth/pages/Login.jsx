@@ -43,7 +43,7 @@ export default function Login({ onFlip }) {
     startLoading();
 
     try {
-      await signInWithGoogle("client"); // default role
+      await signInWithGoogle("babu hai hum"); // default role
       navigate("/");
     } catch (error) {
       console.error("❌ Google login error:", error);

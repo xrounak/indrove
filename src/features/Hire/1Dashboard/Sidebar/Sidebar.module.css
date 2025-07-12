@@ -1,0 +1,142 @@
+.sidebar {
+  width: 180px;
+  background: rgba(30, 41, 59, 0.96);
+  color: #b5b5b5;
+  padding: 1.2rem 0.5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #23232a;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1500;
+  box-shadow: none;
+  overflow-y: auto;
+  height: 100vh;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  backdrop-filter: blur(16px);
+}
+.sidebarOpen {
+  transform: translateX(0);
+}
+.overlay {
+  display: none;
+}
+.overlayHidden {
+  display: none;
+}
+.closeBtn {
+  display: none;
+}
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.navItem {}
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 0.5rem 0.7rem;
+  transition: background 0.18s, color 0.18s;
+}
+.navLink:hover, .navLink:focus {
+  background: #23232a;
+  color: #14b8a6;
+}
+.icon {
+  font-size: 1.1rem;
+}
+.label {
+  flex: 1;
+}
+@media (max-width: 1023px) {
+  .sidebar {
+    width: 260px;
+    max-width: 90vw;
+    min-width: 0;
+    height: 100vh;
+    min-height: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2.2rem 1.2rem 1.2rem 1.2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+    z-index: 2200;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px 0 rgba(20,184,166,0.18);
+    border-radius: 18px 18px 18px 18px;
+    border: 1.5px solid rgba(51,65,85,0.18);
+    transform: translateX(-110%);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    background: rgba(30, 41, 59, 0.96);
+    backdrop-filter: blur(18px);
+  }
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(16,16,20,0.65);
+    z-index: 2100;
+    transition: opacity 0.3s;
+    backdrop-filter: blur(2px);
+  }
+  .overlayHidden {
+    display: none;
+  }
+  .closeBtn {
+    display: block;
+    background: rgba(30,41,59,0.85);
+    border: 1.5px solid #23232a;
+    color: #b5b5b5;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 1.1rem;
+    right: 1.1rem;
+    z-index: 2300;
+    cursor: pointer;
+    padding: 0.2rem 0.7rem;
+    border-radius: 50%;
+    line-height: 1;
+    box-shadow: 0 2px 8px 0 rgba(20,184,166,0.10);
+    transition: background 0.18s;
+  }
+  .closeBtn:hover {
+    background: #23232a;
+    color: #14b8a6;
+  }
+  .navList {
+    flex-direction: row;
+    gap: 0.5rem;
+    width: 100vw;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+  }
+  .navLink {
+    font-size: 0.97rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 5px;
+  }
+} 

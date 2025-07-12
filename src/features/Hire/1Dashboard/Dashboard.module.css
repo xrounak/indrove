@@ -1,0 +1,41 @@
+.dashboardRoot {
+  min-height: 100vh;
+  background: #111827;
+  display: flex;
+  flex-direction: column;
+}
+.dashboardBody {
+  display: flex;
+  flex: 1;
+}
+.dashboardMain {
+  flex: 1;
+  padding: 2rem 2.5rem 1.5rem 200px;
+  background: #111827;
+  min-height: 100vh;
+}
+.dashboardContentGrid {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+@media (max-width: 1023px) {
+  .dashboardMain {
+    padding: 1.2rem 0.5rem 0.5rem 0.5rem;
+  }
+}
+.taskListSection {
+  grid-column: 1 / 2;
+}
+.recentActivityAside {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .dashboardContentGrid {
+    grid-template-columns: 2fr 1fr;
+  }
+  .recentActivityAside {
+    display: block;
+  }
+} 

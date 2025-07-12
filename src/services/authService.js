@@ -6,9 +6,11 @@ import {
   signOut,
   onAuthStateChanged,
   GoogleAuthProvider,
+  deleteUser
 } from "firebase/auth";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "./firebase";
+import { toast } from "react-toastify";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -36,15 +38,29 @@ export const loginWithEmail = async (email, password) => {
 };
 
 // 🔑 Google Login (Handles register + login)
-// 🔑 Google Login (Handles register + login)
-export const loginWithGoogle = async (role = "client") => {
+
+export const loginWithGoogle = async (role) => {
+  console.log("🔑 Starting Google sign-in process...");
+
   const result = await signInWithPopup(auth, googleProvider);
   const user = result.user;
+
+  console.log("✅ Firebase Auth success");
+  console.log("👤 User UID:", user.uid);
+  console.log("📧 Email:", user.email);
+  console.log("🔒 Role passed:", role);
 
   const userRef = doc(db, "users", user.uid);
   const snap = await getDoc(userRef);
 
-  if (!snap.exists()) {
+  if (snap.exists()) {
+    console.log("🧠 User already exists in Firestore.");
+    return user;
+  }
+
+  if (role === "client" || role === "freelancer") {
+    console.log("🆕 New user, role is valid. Registering in Firestore...");
+
     await setDoc(userRef, {
       uid: user.uid,
       email: user.email,
@@ -55,14 +71,25 @@ export const loginWithGoogle = async (role = "client") => {
       bio: ":-)",
       rating: 0,
     });
+
+    console.log("✅ Firestore registration complete.");
+    return user;
   }
 
-  return user;
+  // ❌ Invalid role, user is new, delete from Auth and show toast
+  console.warn("❌ Invalid role passed. Deleting Firebase Auth user...");
+
+  await deleteUser(user);
+  toast.error("🚫 Account does not exist. Please register first.");
+
+  throw new Error("Invalid role. Account not created.");
 };
+
+
 
 // 🚪 Logout
 export const logoutUser = async () => {
-  console.log("logging out")
+  console.log("logging out");
   await signOut(auth);
 };
 
