@@ -1,0 +1,120 @@
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.025em;
+}
+
+.select {
+  background: rgba(15, 23, 42, 0.6);
+  border: 2px solid rgba(51, 65, 85, 0.3);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  color: #f1f5f9;
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.select:hover {
+  border-color: rgba(51, 65, 85, 0.5);
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.select:focus:hover {
+  border-color: #14b8a6;
+}
+
+
+
+/* Option styling */
+.select option {
+  background: #1e293b;
+  color: #f1f5f9;
+  padding: 0.5rem;
+}
+
+.select option:hover {
+  background: #334155;
+}
+
+/* Error state */
+.select:invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Disabled state */
+.select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(15, 23, 42, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .select {
+    padding: 0.875rem 1rem;
+    padding-right: 2.5rem;
+    font-size: 0.95rem;
+  }
+
+  .label {
+    font-size: 0.8rem;
+  }
+
+  .selectArrow {
+    right: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .select {
+    padding: 0.75rem 0.875rem;
+    padding-right: 2.25rem;
+    font-size: 0.9rem;
+  }
+
+  .selectArrow {
+    right: 0.625rem;
+  }
+}
+
+/* Focus styles for accessibility */
+.select:focus-visible {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .select {
+    transition: none;
+  }
+
+  .selectArrow {
+    transition: none;
+  }
+} 

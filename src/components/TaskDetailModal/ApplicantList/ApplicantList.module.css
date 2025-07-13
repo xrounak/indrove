@@ -1,0 +1,197 @@
+.container {
+  background: #1f1f1f;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #333;
+}
+
+.sectionTitle {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.applicantsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.applicantCard {
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  transition: all 0.2s;
+}
+
+.applicantCard:hover {
+  border-color: #444;
+  background: #333;
+}
+
+.applicantInfo {
+  flex: 1;
+}
+
+.applicantHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.applicantName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star {
+  color: #fbbf24;
+  font-size: 14px;
+}
+
+.starEmpty {
+  color: #444;
+  font-size: 14px;
+}
+
+.ratingText {
+  font-size: 12px;
+  color: #a0a0a0;
+}
+
+.applicantDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.email {
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+.experience {
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+.applicationMessage {
+  font-size: 14px;
+  color: #d1d5db;
+  line-height: 1.5;
+  background: #1a1a1a;
+  padding: 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+  border: 1px solid #333;
+}
+
+.applicantActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.viewProfileBtn,
+.assignBtn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  white-space: nowrap;
+}
+
+.viewProfileBtn {
+  background: #333;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+.viewProfileBtn:hover {
+  background: #444;
+  border-color: #555;
+}
+
+.assignBtn {
+  background: #10b981;
+  color: white;
+}
+
+.assignBtn:hover {
+  background: #059669;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .applicantCard {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+  
+  .applicantHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .applicantActions {
+    flex-direction: row;
+    width: 100%;
+    gap: 8px;
+  }
+  
+  .viewProfileBtn,
+  .assignBtn {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .applicationMessage {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+  
+  .applicantCard {
+    padding: 10px;
+  }
+  
+  .applicantActions {
+    flex-direction: column;
+  }
+  
+  .viewProfileBtn,
+  .assignBtn {
+    width: 100%;
+  }
+} 

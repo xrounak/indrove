@@ -1,0 +1,297 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px;
+}
+
+.modal {
+  background: #1a1a1a;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  max-width: 900px;
+  width: 100%;
+  max-height: 95vh;
+  overflow-y: auto;
+  position: relative;
+  border: 1px solid #333;
+  margin-top: 80px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 24px 0;
+  border-bottom: 1px solid #333;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.category {
+  background: #333;
+  color: #a0a0a0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #444;
+}
+
+.closeBtn {
+  background: #333;
+  border: 1px solid #444;
+  font-size: 20px;
+  color: #a0a0a0;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeBtn:hover {
+  background: #444;
+  color: #ffffff;
+  border-color: #555;
+}
+
+.content {
+  padding: 0 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Collapsible Sections */
+.collapsibleSection {
+  border: 1px solid #333;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1f1f1f;
+}
+
+.sectionHeader {
+  width: 100%;
+  background: #2a2a2a;
+  border: none;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sectionHeader:hover {
+  background: #333;
+}
+
+.sectionTitle {
+  color: #ffffff;
+}
+
+.collapseIcon {
+  font-size: 12px;
+  color: #a0a0a0;
+  transition: transform 0.3s ease;
+}
+
+.collapseIcon.collapsed {
+  transform: rotate(-90deg);
+}
+
+.sectionContent {
+  max-height: 1000px;
+  opacity: 1;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.sectionContent.collapsed {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.feedbackSection {
+  border-top: 1px solid #333;
+  padding-top: 24px;
+}
+
+.feedbackBtn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.feedbackBtn:hover {
+  background: #2563eb;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  padding: 24px;
+  border-top: 1px solid #333;
+  background: #1f1f1f;
+  border-radius: 0 0 16px 16px;
+}
+
+.assignBtn,
+.completeBtn,
+.downloadBtn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.assignBtn {
+  background: #10b981;
+  color: white;
+}
+
+.assignBtn:hover:not(:disabled) {
+  background: #059669;
+}
+
+.assignBtn:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.completeBtn {
+  background: #3b82f6;
+  color: white;
+}
+
+.completeBtn:hover {
+  background: #2563eb;
+}
+
+.downloadBtn {
+  background: #f59e0b;
+  color: white;
+}
+
+.downloadBtn:hover {
+  background: #d97706;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .overlay {
+    padding: 5px;
+  }
+  
+  .modal {
+    max-width: 100vw;
+    max-height: 100vh;
+    border-radius: 12px;
+    margin-top: 110px;
+  }
+  
+  .header {
+    padding: 16px 16px 0;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .content {
+    padding: 0 16px 16px;
+    gap: 12px;
+  }
+  
+  .actions {
+    padding: 16px;
+    flex-direction: column;
+    border-radius: 0 0 12px 12px;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+  .headerLeft {
+    gap: 8px;
+  }
+  
+  .closeBtn {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+  
+  .sectionHeader {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+  
+  .collapsibleSection {
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal {
+    border-radius: 8px;
+  }
+  
+  .header {
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .actions {
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .title {
+    font-size: 18px;
+  }
+  
+  .content {
+    padding: 0 12px 12px;
+  }
+  
+  .sectionHeader {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+} 

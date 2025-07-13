@@ -1,0 +1,148 @@
+.container {
+  background: #1f1f1f;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #333;
+}
+
+.sectionTitle {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.submissionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.subsectionTitle {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #d1d5db;
+}
+
+.filesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fileItem {
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+}
+
+.fileItem:hover {
+  border-color: #444;
+  background: #333;
+}
+
+.fileIcon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.fileInfo {
+  flex: 1;
+}
+
+.fileName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.fileSize {
+  font-size: 12px;
+  color: #a0a0a0;
+}
+
+.downloadFileBtn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.downloadFileBtn:hover {
+  background: #2563eb;
+}
+
+.notesSection {
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.notesContent {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #d1d5db;
+  white-space: pre-wrap;
+}
+
+.submissionMeta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submissionDate {
+  font-size: 12px;
+  color: #a0a0a0;
+  font-style: italic;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .fileItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+  }
+  
+  .downloadFileBtn {
+    align-self: stretch;
+    padding: 10px 12px;
+  }
+  
+  .notesSection {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+  
+  .fileItem {
+    padding: 8px;
+  }
+  
+  .notesSection {
+    padding: 10px;
+  }
+} 

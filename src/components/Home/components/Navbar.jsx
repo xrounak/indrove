@@ -65,7 +65,7 @@ export default function Navbar() {
           
             <span className={styles.userName}>Login</span>
             <img
-              src="https://tse4.mm.bing.net/th/id/OIP.OesLvyzDO6AvU_hYUAT4IAHaHa?pid=Api&P=0&h=180"
+              src="https://i.pravatar.cc/40"
               alt="Guest"
               className={styles.profilePic}
             />
@@ -76,7 +76,7 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       <div className={`${styles.mobileMenu} ${menuOpen ? styles.active : ""}`}>
         <NavLink to="/about" onClick={closeMenu} className={styles.mobileLink}>About</NavLink>
-        <NavLink to="/post-task" onClick={closeMenu} className={styles.mobileLink}>Post Task</NavLink>
+        <NavLink to="/hireroutes/post-task" onClick={closeMenu} className={styles.mobileLink}>Post Task</NavLink>
         <NavLink to="/earn" onClick={closeMenu} className={styles.mobileLink}>Earn</NavLink>
       </div>
     </nav>

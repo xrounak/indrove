@@ -1,0 +1,127 @@
+.container {
+  background: #1f1f1f;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #333;
+}
+
+.sectionTitle {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.infoGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.content {
+  flex: 1;
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.value {
+  margin: 0;
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ellipsis {
+  color: #a0a0a0;
+  font-weight: 500;
+}
+
+.expandBtn {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  transition: color 0.2s;
+  align-self: flex-start;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.expandBtn:hover {
+  color: #60a5fa;
+}
+
+.expandBtn:active {
+  transform: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .infoItem {
+    gap: 8px;
+  }
+  
+  .icon {
+    font-size: 18px;
+  }
+  
+  .expandBtn {
+    font-size: 11px;
+  }
+  
+  .descriptionContainer {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+  
+  .descriptionContainer {
+    gap: 3px;
+  }
+  
+  .expandBtn {
+    font-size: 10px;
+  }
+  
+  .value {
+    font-size: 13px;
+  }
+} 

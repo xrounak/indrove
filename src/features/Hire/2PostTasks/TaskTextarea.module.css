@@ -1,0 +1,118 @@
+.textareaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.025em;
+}
+
+.textarea {
+  background: rgba(15, 23, 42, 0.6);
+  border: 2px solid rgba(51, 65, 85, 0.3);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  color: #f1f5f9;
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+  resize: vertical;
+  min-height: 50px;
+  line-height: 1.6;
+}
+
+.textarea::placeholder {
+  color: #64748b;
+  font-weight: 400;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.textarea:hover {
+  border-color: rgba(51, 65, 85, 0.5);
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.textarea:focus:hover {
+  border-color: #14b8a6;
+}
+
+/* Error state */
+.textarea:invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Disabled state */
+.textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(15, 23, 42, 0.4);
+}
+
+/* Custom scrollbar for textarea */
+.textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.textarea::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+  border-radius: 4px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  background: rgba(20, 184, 166, 0.5);
+  border-radius: 4px;
+}
+
+.textarea::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 184, 166, 0.7);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .textarea {
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+    min-height: 100px;
+  }
+
+  .label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .textarea {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.9rem;
+    min-height: 80px;
+  }
+}
+
+/* Focus styles for accessibility */
+.textarea:focus-visible {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .textarea {
+    transition: none;
+  }
+} 

@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 import StatusBadge from './StatusBadge/StatusBadge';
 import ApplicationCountBadge from './ApplicationCountBadge/ApplicationCountBadge';
 import styles from './TaskCard.module.css';
 
-export default function TaskCard({ task }) {
+export default function TaskCard({ task,handleTaskClick }) {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
@@ -15,7 +16,7 @@ export default function TaskCard({ task }) {
         <ApplicationCountBadge count={task.applications} />
       </div>
       <div className={styles.actions}>
-        <a href={`/client/task/${task.id}`} className={styles.viewBtn}>View</a>
+        <Link onClick={handleTaskClick} className={styles.viewBtn}>View</Link>
       </div>
     </div>
   );

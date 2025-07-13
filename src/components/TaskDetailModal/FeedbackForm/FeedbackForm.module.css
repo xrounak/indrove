@@ -1,0 +1,169 @@
+.container {
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.title {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ratingSection,
+.messageSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #d1d5db;
+}
+
+.starsContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.star {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #444;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 4px;
+}
+
+.star:hover {
+  color: #fbbf24;
+}
+
+.starActive {
+  color: #fbbf24;
+}
+
+.ratingText {
+  font-size: 14px;
+  color: #a0a0a0;
+  margin-left: 8px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.2s;
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.textarea::placeholder {
+  color: #666;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.cancelBtn,
+.submitBtn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.cancelBtn {
+  background: #333;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+.cancelBtn:hover {
+  background: #444;
+  border-color: #555;
+}
+
+.submitBtn {
+  background: #10b981;
+  color: white;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #059669;
+}
+
+.submitBtn:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+  
+  .cancelBtn,
+  .submitBtn {
+    width: 100%;
+    padding: 12px 16px;
+  }
+  
+  .starsContainer {
+    gap: 4px;
+  }
+  
+  .star {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+  
+  .title {
+    font-size: 15px;
+  }
+  
+  .textarea {
+    min-height: 80px;
+    padding: 10px;
+  }
+} 
