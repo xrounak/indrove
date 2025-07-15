@@ -2,18 +2,34 @@ import React from 'react';
 import styles from './TimelineStatus.module.css';
 
 export default function TimelineStatus({ task }) {
-  const formatDate = (timestamp) => {
-    if (!timestamp) return '-';
-    const date = new Date(timestamp);
-    return date.toLocaleString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true
+const formatDate = (timestamp) => {
+  if (!timestamp) return "-";
+
+  let date;
+  try {
+    if (typeof timestamp.toDate === "function") {
+      // Firestore Timestamp object
+      date = timestamp.toDate();
+    } else {
+      date = new Date(timestamp);
+    }
+
+    if (isNaN(date.getTime())) return "-";
+
+    return date.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
     });
-  };
+  } catch (error) {
+    console.error("Invalid date format:", error);
+    return "-";
+  }
+};
+
 
   const timelineSteps = [
     {
@@ -42,6 +58,7 @@ export default function TimelineStatus({ task }) {
     }
   ];
 
+
   return (
     <div className={styles.container}>
       <h3 className={styles.sectionTitle}>Timeline</h3>
@@ -64,8 +81,10 @@ export default function TimelineStatus({ task }) {
               <div className={`${styles.timelineLine} ${step.completed ? styles.completed : styles.pending}`} />
             )}
           </div>
+          
         ))}
       </div>
     </div>
   );
 } 
+

@@ -1,0 +1,131 @@
+/* ========== Layout ========== */
+.container {
+  padding: 3rem 1.5rem;
+  min-height: 100vh;
+  background-color: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card {
+  width: 100%;
+  max-width: 700px;
+  padding: 2.5rem;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(20, 184, 166, 0.2);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  color: #d2d2d2;
+}
+
+/* ========== Typography ========== */
+.title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #14b8a6;
+}
+
+.nameEmail h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.nameEmail p {
+  font-size: 0.95rem;
+  color: #b5b5b5;
+}
+
+.infoGrid h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #14b8a6;
+}
+
+/* ========== Avatar Section ========== */
+.avatarSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #14b8a6;
+}
+
+/* ========== Badge ========== */
+.roleBadge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  background-color: rgba(20, 184, 166, 0.1);
+  color: #14b8a6;
+}
+
+/* ========== Info Grid ========== */
+.infoGrid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* ========== Actions ========== */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.editBtn,
+.logoutBtn {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* ========== Buttons ========== */
+.editBtn {
+  background-color: #14b8a6;
+  color: #0f172a;
+  border: none;
+}
+
+.editBtn:hover {
+  background-color: #0d9488;
+}
+
+.logoutBtn {
+  background-color: transparent;
+  color: #14b8a6;
+  border: 1px solid #14b8a6;
+}
+
+.logoutBtn:hover {
+  background-color: rgba(20, 184, 166, 0.1);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 600px) {
+  .avatarSection {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

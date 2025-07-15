@@ -1,10 +1,12 @@
 // src/routes/AppRoutes.jsx
 import { Routes, Route, Navigate } from "react-router-dom";
-import Auth from "../features/auth/pages/Auth";
+import Auth from "../pages/auth/Auth";
 import { ProtectedRoute } from "./ProtectedRoute";
 import HireRoutes from "./Hire";
 import WorkRoutes from "./Work";
-import Home from "../components/Home/Home";
+import Home from '../pages/Home/Home'
+import About from "../components/About/About";
+import Profile from "../pages/Profile/Profile";
 
 export default function AppRoutes() {
   return (
@@ -12,6 +14,16 @@ export default function AppRoutes() {
       {/* Public Routes */}
       <Route path="/" element={<Home />}></Route>
       <Route path="/auth" element={<Auth />} />
+      <Route path="/about" element={<About />} />
+
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile></Profile>
+          </ProtectedRoute>
+        }
+      />
 
       {/* Client Routes */}
       <Route

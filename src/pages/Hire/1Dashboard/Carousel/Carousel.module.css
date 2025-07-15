@@ -1,0 +1,123 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2px;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  z-index: 0;
+  height: 40px;
+  margin-right: 100px;
+}
+
+.wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  margin-right: 100px;
+}
+
+.row {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-right: 100px;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  height: 40px;
+  margin-right: 100px;
+}
+
+.left {
+  animation: scroll-left 160s linear infinite;
+}
+
+.right {
+  animation: scroll-right 160s linear infinite;
+}
+
+.card {
+  flex: 0 0 auto;
+  background: rgba(30, 41, 59, 0.9);
+  color: #f3f4f6;
+  padding: 1rem 0.75rem;
+  margin: 0 20rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(20, 184, 166, 0.15);
+  text-align: center;
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  transition: transform 0.2s ease;
+  backdrop-filter: blur(10px);  
+  position: relative;
+  height: 38px;
+  cursor: default;
+
+  /* 👇 Important: allow long width */
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: unset;
+  width: auto;
+  max-width: none;
+}
+
+
+.card::after {
+  content: attr(data-fulltext);
+  position: absolute;
+  left: 50%;
+  bottom: 110%;
+  transform: translateX(-50%);
+  background: #0f172a;
+  color: #f3f4f6;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: normal;
+  width: max-content;
+  max-width: 300px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+
+
+
+
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+ 

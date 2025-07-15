@@ -1,0 +1,126 @@
+.card {
+  background: #18181b;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 1px solid #23232a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  background: #1f1f23;
+  border-color: #14b8a6;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.title {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #fafafa;
+  letter-spacing: -0.01em;
+}
+
+.details {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 0.97rem;
+}
+
+.detail {
+  color: #a1a1aa;
+  font-size: 0.97rem;
+}
+
+.actions {
+  margin-top: 0.2rem;
+  display: flex;
+  padding: 0px 1rem;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.viewBtn {
+  background: #23232a;
+  color: #14b8a6;
+  border: none;
+  border-radius: 6px;
+  padding: 0.35rem 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+  font-size: 0.97rem;
+  box-shadow: none;
+}
+
+.viewBtn:hover {
+  background: #14b8a6;
+  color: #fff;
+}
+
+.deleteBtn {
+  background: #23232a;
+  color: #b82d14;
+  border: none;
+  border-radius: 6px;
+  padding: 0.35rem 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+  font-size: 0.97rem;
+  box-shadow: none;
+}
+
+.deleteBtn:hover {
+  background: #b82214;
+  color: #fff;
+}
+
+.updateBtn {
+  background: #23232a;
+  color: #d9a522;
+  border: none;
+  border-radius: 6px;
+  padding: 0.35rem 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+  font-size: 0.97rem;
+  box-shadow: none;
+}
+
+.updateBtn:hover {
+  background: #ffd015;
+  color: #000000;
+}
+
+
+@media (max-width: 768px) {
+  .card {
+    padding: 0.75rem 0.5rem;
+    border-radius: 7px;
+    gap: 0.5rem;
+  }
+  
+  .details {
+    gap: 0.7rem;
+    font-size: 0.93rem;
+  }
+  
+  .title {
+    font-size: 0.98rem;
+  }
+} 

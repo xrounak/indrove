@@ -7,11 +7,14 @@ import { Suspense } from "react";
 import Loader from "./components/feedback/Loader";
 import { ToastContainer } from "react-toastify";
 
+import { Layout } from "./routes/Layout";
+
 function App() {
   const { loading } = useAuth();
   return (
-    <center>
       <Router>
+        
+    <Layout>
         <ToastContainer
           position="bottom-right"
           autoClose={5000}
@@ -23,8 +26,9 @@ function App() {
           <AppRoutes />
         </Suspense>
         {loading && <Loader />}
+        </Layout>
       </Router>
-    </center>
+  
   );
 }
 

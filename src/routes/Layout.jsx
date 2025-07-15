@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import Loader from "../components/feedback/Loader";
+import Navbar from "../components/ui/Navbar";
 
 export const Layout = ({ children }) => {
   const { loading } = useAuth();
@@ -11,7 +12,10 @@ export const Layout = ({ children }) => {
 
   return (
     <>
-      {children}
+      <>
+        <Navbar></Navbar>
+        {children}
+      </>
       {loading && <Loader />}
     </>
   );

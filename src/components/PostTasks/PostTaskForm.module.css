@@ -1,0 +1,170 @@
+/* Overlay for modal */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+  padding: 5px;
+}
+
+/* Modal container */
+.container {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 1rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  max-width: 900px;
+  max-height: 95vh;
+  overflow-y: auto;
+  margin-top: 80px;
+  position: relative;
+}
+
+/* Form wrapper */
+
+.formWrapper {
+  background-color: #141414;
+  max-width: 480px;
+  margin: auto;
+  padding: 2rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 50px auto;
+}
+
+/* Header section */
+.header {
+  text-align: center;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.closeBtn {
+  position: absolute;
+    top: -26px;
+    right: -13px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  color: #14b8a6;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #aaa;
+  margin-top: 0.25rem;
+}
+
+/* Form structure */
+.form {
+  width: 100%;
+}
+
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Submit button */
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.submitButton {
+  background: #14b8a6;
+  color: #fff;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.submitButton:hover,
+.submitButton:focus {
+  background: #0f766e;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .formWrapper {
+    padding: 1rem;
+    max-width: 95vw;
+  }
+
+  .closeBtn {
+    top: 0.25rem;
+    right: 0.25rem;
+    font-size: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .submitButton {
+    font-size: 0.95rem;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .formWrapper {
+    padding: 0.75rem;
+    margin: 10px auto;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+}
+
+.formWrapper {
+  background: #111;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 24px rgba(255, 255, 255, 0.03);
+  border: 1px solid #2d2d2d;
+}
+
+.container {
+  background: #1a1a1a;
+  border-radius: 1rem;
+  border: 1px solid #4b5563; /* Tailwind's gray-600 */
+  box-shadow: 0 0 0 1px rgba(75, 85, 99, 0.4), 0 8px 30px rgba(0, 0, 0, 0.5);
+  max-width: 900px;
+  width: 100%;
+  max-height: 95vh;
+  overflow-y: auto;
+  margin-top: 80px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import EmptyState from '../../../features/Hire/1Dashboard/EmptyState/EmptyState';
+import EmptyState from '../../../pages/Hire/1Dashboard/EmptyState/EmptyState';
 import styles from './ApplicantList.module.css';
 
 export default function ApplicantList({ applications, users, onAssign }) {

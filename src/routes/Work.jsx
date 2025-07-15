@@ -1,10 +1,10 @@
 // // src/routes/Work.jsx
 // import { Routes, Route, Navigate } from "react-router-dom";
-// import Profile from "../features/Work/0Profile/Profile";
-// import Dashboard from "../features/Work/1Dashboard/Dashboard";
-// import GetTasks from "../features/Work/2GetTasks/GetTasks";
-// import DoTask from "../features/Work/3DoTask/DoTask";
-// import CollectedTasks from "../features/Work/4CollectTasks/CollectedTasks";
+// import Profile from "..//Work/0Profile/Profile";
+// import Dashboard from "..//Work/1Dashboard/Dashboard";
+// import GetTasks from "..//Work/2GetTasks/GetTasks";
+// import DoTask from "..//Work/3DoTask/DoTask";
+// import CollectedTasks from "..//Work/4CollectTasks/CollectedTasks";
 
 export default function WorkRoutes() {
   return (

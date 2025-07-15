@@ -85,6 +85,7 @@
 
 .timelineLine.completed {
   background: #10b981;
+  height: 3rem;
 }
 
 .timelineLine.pending {
@@ -96,19 +97,19 @@
   .container {
     padding: 16px;
   }
-  
+
   .timeline {
     padding-left: 16px;
   }
-  
+
   .timelineDot {
     left: -26px;
     width: 20px;
     height: 20px;
     font-size: 10px;
   }
-  
+
   .timelineLine {
     left: -16px;
   }
-} 
+}
