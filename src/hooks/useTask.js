@@ -170,5 +170,6 @@ export const useTask = (uid) => {
     assignTask,
     completeTask,
     submitFeedback,
+    setLoading,
   };
 };

@@ -13,9 +13,8 @@ import { useTask } from "../../hooks/useTask";
 
 export default function PostTaskForm({ onClose, updatingTask = null }) {
   const { user } = useAuth();
-  const { postTask, updateTask } = useTask();
+  const { postTask, updateTask, loadClientTasks ,loading,setLoading } = useTask();
 
-  const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
     title: "",
@@ -76,6 +75,8 @@ export default function PostTaskForm({ onClose, updatingTask = null }) {
         budget: "",
         category: "",
       });
+      
+      await loadClientTasks(user.uid);
       onClose();
     } catch (error) {
       console.error("Error submitting task:", error);
