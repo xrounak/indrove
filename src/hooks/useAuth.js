@@ -4,6 +4,8 @@ import {
   signUpWithEmail,
   loginWithGoogle,
   logoutUser,
+  sendResetEmail,
+  sendVerificationEmail,
 } from "../services/authService";
 import { useAuth } from "../context/AuthContext";
 
@@ -26,9 +28,18 @@ export const useAuthActions = () => {
     registerWithEmailAndPassword: (email, password, role) =>
       handleWithLoading(() => signUpWithEmail(email, password, role)),
 
-    signInWithGoogle: (role) =>
-      handleWithLoading(() => loginWithGoogle(role)),
+    signInWithGoogle: (role) => handleWithLoading(() => loginWithGoogle(role)),
 
     logout: () => handleWithLoading(() => logoutUser()),
+
+    sendResetEmail: (email) => sendResetEmail(email),
+
+    sendEmailVerificationToUser: () =>
+      handleWithLoading(() => {
+        console.log("sending mail")
+        sendVerificationEmail();
+        console.log("sent the mail")
+
+      }),
   };
 };

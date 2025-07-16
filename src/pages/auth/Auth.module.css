@@ -244,3 +244,28 @@
     padding: 6px 10px;
   }
 }
+
+.forgotWrapper {
+  text-align: right;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}
+
+.forgotBtn {
+  background: none;
+  border: none;
+  color: #58a6ff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+}
+
+.forgotBtn:hover {
+  text-decoration: underline;
+}
+
+.success {
+  color: #4caf50;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}

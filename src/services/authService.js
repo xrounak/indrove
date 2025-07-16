@@ -1,4 +1,8 @@
-// src/services/authService.js
+import {
+  auth,
+  db
+} from "./firebase";
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -6,13 +10,26 @@ import {
   signOut,
   onAuthStateChanged,
   GoogleAuthProvider,
-  deleteUser
+  deleteUser,
+  sendPasswordResetEmail,
+  sendEmailVerification
 } from "firebase/auth";
-import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
-import { auth, db } from "./firebase";
+
+import {
+  doc,
+  getDoc,
+  setDoc,
+  serverTimestamp
+} from "firebase/firestore";
+
 import { toast } from "react-toastify";
 
 const googleProvider = new GoogleAuthProvider();
+
+
+// ==========================
+// 🟩 SIGNUP & LOGIN METHODS
+// ==========================
 
 // 📥 Email/Password Signup
 export const signUpWithEmail = async (email, password, role) => {
@@ -28,6 +45,7 @@ export const signUpWithEmail = async (email, password, role) => {
     bio: ":-)",
     rating: 0,
   });
+
   return userCred.user;
 };
 
@@ -38,17 +56,11 @@ export const loginWithEmail = async (email, password) => {
 };
 
 // 🔑 Google Login (Handles register + login)
-
 export const loginWithGoogle = async (role) => {
   console.log("🔑 Starting Google sign-in process...");
 
   const result = await signInWithPopup(auth, googleProvider);
   const user = result.user;
-
-  console.log("✅ Firebase Auth success");
-  console.log("👤 User UID:", user.uid);
-  console.log("📧 Email:", user.email);
-  console.log("🔒 Role passed:", role);
 
   const userRef = doc(db, "users", user.uid);
   const snap = await getDoc(userRef);
@@ -59,7 +71,7 @@ export const loginWithGoogle = async (role) => {
   }
 
   if (role === "client" || role === "freelancer") {
-    console.log("🆕 New user, role is valid. Registering in Firestore...");
+    console.log("🆕 New user. Registering in Firestore...");
 
     await setDoc(userRef, {
       uid: user.uid,
@@ -72,24 +84,23 @@ export const loginWithGoogle = async (role) => {
       rating: 0,
     });
 
-    console.log("✅ Firestore registration complete.");
     return user;
   }
 
-  // ❌ Invalid role, user is new, delete from Auth and show toast
-  console.warn("❌ Invalid role passed. Deleting Firebase Auth user...");
-
+  // ❌ Invalid role passed
   await deleteUser(user);
   toast.error("🚫 Account does not exist. Please register first.");
-
   throw new Error("Invalid role. Account not created.");
 };
 
 
+// ==========================
+// 🔁 SESSION & AUTH STATE
+// ==========================
 
 // 🚪 Logout
 export const logoutUser = async () => {
-  console.log("logging out");
+  console.log("🚪 Logging out...");
   await signOut(auth);
 };
 
@@ -98,9 +109,33 @@ export const observeAuthState = (callback) => {
   return onAuthStateChanged(auth, callback);
 };
 
+
+// ==========================
+// 📄 USER DATA & UTILITIES
+// ==========================
+
 // 🔎 Get Firestore User Data
 export const getUserData = async (uid) => {
   const docRef = doc(db, "users", uid);
   const snap = await getDoc(docRef);
   return snap.exists() ? snap.data() : null;
+};
+
+// 📧 Send Reset Email
+export const sendResetEmail = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    alert("🔁 Password reset email sent!");
+  } catch (error) {
+    console.error("❌ Error sending reset email:", error.message);
+  }
+};
+
+// 📨 Send Email Verification
+export const sendVerificationEmail = async () => {
+  if (!auth.currentUser) {
+    throw new Error("No user is currently signed in.");
+  }
+  console.log("📧 Sending email verification to:", auth.currentUser.email);
+  return await sendEmailVerification(auth.currentUser);
 };

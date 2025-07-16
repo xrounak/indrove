@@ -2,7 +2,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+  background: rgba(0,0,0,0.85);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -10,34 +10,28 @@
   padding: 5px;
 }
 
-/* Modal container */
-/* .container {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 1rem;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-  width: 100%;
-  max-width: 900px;
-  max-height: 95vh;
-  overflow-y: auto;
-  margin-top: auto;
-  position: relative;
-} */
-
-/* Form wrapper */
-
 .formWrapper {
-  background-color: #141414;
+  background: rgba(24,24,27,0.95); /* #18181b with glassmorphism */
   max-width: 480px;
-  margin: auto;
+  margin: 50px auto;
   padding: 2rem 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin: 50px auto;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 32px rgba(20,184,166,0.10), 0 1.5px 0 #14b8a6;
+  border: 1.5px solid #14b8a6;
+  position: relative;
+  backdrop-filter: blur(8px);
+  transition: box-shadow 0.3s, border-color 0.3s;
+      max-height: 90vh;
+    overflow-y: auto;
+}
+.formWrapper:hover {
+  box-shadow: 0 0 16px 2px #14b8a6, 0 8px 32px rgba(20,184,166,0.15);
+  border-color: #14b8a6;
 }
 
-/* Header section */
 .header {
   text-align: center;
   position: relative;
@@ -46,32 +40,37 @@
 
 .closeBtn {
   position: absolute;
-    top: -26px;
-    right: -13px;
-  background: none;
-  border: none;
-  color: #888;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.closeBtn:hover {
+  top: -26px;
+  right: -13px;
+  background: #232329;
+  border: 1.5px solid #14b8a6;
   color: #14b8a6;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.25rem 0.75rem;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 0 0 #14b8a6;
+}
+.closeBtn:hover {
+  background: #14b8a6;
+  color: #fff;
+  box-shadow: 0 0 8px 2px #14b8a6;
 }
 
 .title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #14b8a6;
+  letter-spacing: 0.01em;
 }
 
 .subtitle {
-  font-size: 1rem;
-  color: #aaa;
+  font-size: 1.1rem;
+  color: #e2e8f0;
   margin-top: 0.25rem;
 }
 
-/* Form structure */
 .form {
   width: 100%;
 }
@@ -82,7 +81,6 @@
   gap: 1.25rem;
 }
 
-/* Submit button */
 .buttonContainer {
   display: flex;
   justify-content: center;
@@ -95,77 +93,51 @@
   border-radius: 0.75rem;
   padding: 0.8rem 2rem;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: background 0.2s ease;
+  box-shadow: 0 2px 12px rgba(20,184,166,0.15);
+  transition: background 0.2s, box-shadow 0.2s, filter 0.2s;
+  filter: drop-shadow(0 0 0 #14b8a6);
 }
-
 .submitButton:hover,
 .submitButton:focus {
-  background: #0f766e;
+  background: #232329;
+  color: #14b8a6;
+  box-shadow: 0 0 16px 2px #14b8a6, 0 4px 24px rgba(20,184,166,0.25);
+  filter: drop-shadow(0 0 8px #14b8a6);
 }
-
 .submitButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .formWrapper {
     padding: 1rem;
     max-width: 95vw;
   }
-
   .closeBtn {
     top: 0.25rem;
     right: 0.25rem;
     font-size: 1.25rem;
   }
-
   .title {
     font-size: 1.25rem;
   }
-
   .submitButton {
     font-size: 0.95rem;
     padding: 0.75rem 1.5rem;
   }
 }
-
 @media (max-width: 480px) {
   .formWrapper {
     padding: 0.75rem;
     margin: 10px auto;
   }
-
   .title {
     font-size: 1.1rem;
   }
-
   .submitButton {
     width: 100%;
   }
-}
-
-.formWrapper {
-  background: #111;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 4px 24px rgba(255, 255, 255, 0.03);
-  border: 1px solid #2d2d2d;
-  position: relative;
-
-}
-
-.container {
-  background: #1a1a1a;
-  border-radius: 1rem;
-  border: 1px solid #4b5563; /* Tailwind's gray-600 */
-  box-shadow: 0 0 0 1px rgba(75, 85, 99, 0.4), 0 8px 30px rgba(0, 0, 0, 0.5);
-  max-width: 900px;
-  width: 100%;
-  max-height: 95vh;
-  overflow-y: auto;
-  transition: border-color 0.3s, box-shadow 0.3s;
 }

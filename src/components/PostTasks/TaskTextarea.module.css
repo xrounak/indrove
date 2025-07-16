@@ -4,105 +4,64 @@
   gap: 0.5rem;
   position: relative;
 }
-
 .label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #e2e8f0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #14b8a6;
   margin-bottom: 0.25rem;
   letter-spacing: 0.025em;
 }
-
 .textarea {
-  background: rgba(24, 24, 27, 0.85);
-  border: 2px solid var(--color-border);
-  border-radius: 0.75rem;
-  color: var(--color-text);
+  background: #18181b;
+  border: 2px solid #14b8a6;
+  border-radius: 0.85rem;
+  color: #fff;
   font-size: 1rem;
   padding: 0.85rem 1.25rem;
   font-family: 'Inter', system-ui, sans-serif;
-  transition: border 0.2s, background 0.2s;
-  backdrop-filter: var(--glass-blur);
+  transition: border 0.2s, background 0.2s, box-shadow 0.2s;
 }
-
 .textarea::placeholder {
-  color: #64748b;
+  color: #b0b0b0;
   font-weight: 400;
 }
-
-.textarea:focus {
-  border-color: var(--color-accent);
-  background: rgba(24, 24, 27, 0.95);
-}
-
-.textarea:hover {
+.textarea:focus, .textarea:hover {
   border-color: #14b8a6;
+  background: #232329;
+  box-shadow: 0 0 8px 1px #14b8a6;
 }
-
-.textarea:focus:hover {
-  border-color: #14b8a6;
+.textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #18181b;
 }
-
-/* Error state */
 .textarea:invalid {
   border-color: #ef4444;
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
-
-/* Disabled state */
-.textarea:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background: rgba(15, 23, 42, 0.4);
+.textarea:focus-visible {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
 }
-
-/* Custom scrollbar for textarea */
 .textarea::-webkit-scrollbar {
   width: 8px;
 }
-
-.textarea::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.3);
-  border-radius: 4px;
-}
-
 .textarea::-webkit-scrollbar-thumb {
-  background: rgba(20, 184, 166, 0.5);
+  background: #14b8a6;
   border-radius: 4px;
 }
-
-.textarea::-webkit-scrollbar-thumb:hover {
-  background: rgba(20, 184, 166, 0.7);
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
   .textarea {
     padding: 0.75rem 1rem;
     font-size: 0.95rem;
   }
-
   .label {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 }
-
 @media (max-width: 480px) {
   .textarea {
     padding: 0.65rem 0.75rem;
     font-size: 0.9rem;
-  }
-}
-
-/* Focus styles for accessibility */
-.textarea:focus-visible {
-  outline: 2px solid #14b8a6;
-  outline-offset: 2px;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .textarea {
-    transition: none;
   }
 } 

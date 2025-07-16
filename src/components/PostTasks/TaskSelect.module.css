@@ -4,99 +4,63 @@
   gap: 0.5rem;
   position: relative;
 }
-
 .label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #e2e8f0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #14b8a6;
   margin-bottom: 0.25rem;
   letter-spacing: 0.025em;
 }
-
 .select {
-  background: rgba(24, 24, 27, 0.85);
-  border: 2px solid var(--color-border);
-  border-radius: 0.75rem;
-  color: var(--color-text);
+  background: #18181b;
+  border: 2px solid #14b8a6;
+  border-radius: 0.85rem;
+  color: #fff;
   font-size: 1rem;
   padding: 0.85rem 1.25rem;
   font-family: 'Inter', system-ui, sans-serif;
-  transition: border 0.2s, background 0.2s;
-  backdrop-filter: var(--glass-blur);
+  transition: border 0.2s, background 0.2s, box-shadow 0.2s;
 }
-.select:focus {
-  border-color: var(--color-accent);
-  background: rgba(24, 24, 27, 0.95);
-}
-.select:hover {
+.select:focus, .select:hover {
   border-color: #14b8a6;
+  background: #232329;
+  box-shadow: 0 0 8px 1px #14b8a6;
 }
-
-
-/* Option styling */
 .select option {
-  background: #1e293b;
-  color: #f1f5f9;
+  background: #18181b;
+  color: #fff;
   padding: 0.5rem;
+  transition: background 0.2s, color 0.2s;
 }
-
 .select option:hover {
-  background: #334155;
+  background: #14b8a6;
+  color: #fff;
 }
-
-/* Error state */
 .select:invalid {
   border-color: #ef4444;
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
-
-/* Disabled state */
 .select:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background: rgba(15, 23, 42, 0.4);
+  background: #18181b;
 }
-
-/* Responsive Design */
+.select:focus-visible {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+}
 @media (max-width: 768px) {
   .select {
     padding: 0.75rem 1rem;
     font-size: 0.95rem;
   }
-
   .label {
-    font-size: 0.8rem;
-  }
-
-  .selectArrow {
-    right: 0.75rem;
+    font-size: 0.85rem;
   }
 }
-
 @media (max-width: 480px) {
   .select {
     padding: 0.65rem 0.75rem;
     font-size: 0.9rem;
-  }
-
-  .selectArrow {
-    right: 0.625rem;
-  }
-}
-
-/* Focus styles for accessibility */
-.select:focus-visible {
-  outline: 2px solid #14b8a6;
-  outline-offset: 2px;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .select {
-    transition: none;
-  }
-
-  .selectArrow {
-    transition: none;
   }
 } 

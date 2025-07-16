@@ -1,0 +1,107 @@
+/* src/pages/Profile/EditProfile.module.css */
+.formContainer {
+  background-color: #1e1e20;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0, 255, 200, 0.1);
+  color: #f2f2f2;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.25rem;
+  color: #00ffd1;
+  text-align: center;
+}
+
+.formGroup {
+  margin-bottom: 1.25rem;
+}
+
+.label {
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  color: #ddd;
+  display: block;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  background-color: #2b2b2e;
+  color: #fff;
+  border: 1px solid #00ffd144;
+  font-size: 0.95rem;
+}
+
+.textarea {
+  min-height: 80px;
+}
+
+.previewImage {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  object-fit: cover;
+  border: 2px solid #00ffd1;
+}
+
+.button {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(to right, #00ffd1, #00d9ff);
+  color: #0f0f0f;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button:hover {
+  filter: brightness(1.1);
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #00ffd1;
+}
+
+.message {
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.message.success {
+  background-color: #d1ffe8;
+  color: #006f5f;
+}
+
+.message.error {
+  background-color: #ffe1e1;
+  color: #c20000;
+}
+
+@media (max-width: 600px) {
+  .formContainer {
+    padding: 1.2rem;
+  }
+
+  .input,
+  .textarea {
+    font-size: 0.9rem;
+  }
+
+  .button {
+    width: 100%;
+  }
+}

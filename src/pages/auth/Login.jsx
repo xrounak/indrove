@@ -8,17 +8,19 @@ import { useUILoading } from "../../context/UILoadingContext ";
 import { GoogleButton } from "../../components/ui/ContinueWithGoogle";
 
 export default function Login({ onFlip }) {
-  const { loginWithEmailAndPassword, signInWithGoogle } = useAuthActions();
+  const { loginWithEmailAndPassword, signInWithGoogle, sendResetEmail } = useAuthActions();
   const { startLoading, stopLoading } = useUILoading();
   const { setUser, setUserData } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
+  const [message, setMessage] = useState(""); // For showing reset email success
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setErr("");
+    setMessage("");
     startLoading();
 
     try {
@@ -40,14 +42,35 @@ export default function Login({ onFlip }) {
 
   const handleGoogleLogin = async () => {
     setErr("");
+    setMessage("");
     startLoading();
 
     try {
-      await signInWithGoogle("babu hai hum"); // default role
+      await signInWithGoogle("babu hai hum");
       navigate("/");
     } catch (error) {
       console.error("❌ Google login error:", error);
       setErr(error.message || "Google login failed");
+    } finally {
+      stopLoading();
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    setErr("");
+    setMessage("");
+    if (!email) {
+      setErr("Please enter your email to reset password.");
+      return;
+    }
+
+    startLoading();
+    try {
+      await sendResetEmail(email);
+      setMessage("🔗 Password reset link sent to your email.");
+    } catch (error) {
+      console.error("❌ Forgot password error:", error);
+      setErr(error.message || "Could not send reset link.");
     } finally {
       stopLoading();
     }
@@ -58,6 +81,7 @@ export default function Login({ onFlip }) {
       <h2 className={styles.title}>Login</h2>
 
       {err && <p className={styles.error}>{err}</p>}
+      {message && <p className={styles.success}>{message}</p>}
 
       <input
         className={styles.input}
@@ -78,6 +102,12 @@ export default function Login({ onFlip }) {
         required
         autoComplete="current-password"
       />
+
+      <div className={styles.forgotWrapper}>
+        <button type="button" onClick={handleForgotPassword} className={styles.forgotBtn}>
+          Forgot Password?
+        </button>
+      </div>
 
       <button type="submit" className={styles.actionBtn}>
         Login
