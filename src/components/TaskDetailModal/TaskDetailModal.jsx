@@ -8,7 +8,7 @@ import TaskInfoBlock from './TaskInfoBlock/TaskInfoBlock';
 import OwnershipInfo from './OwnershipInfo/OwnershipInfo';
 import styles from './TaskDetailModal.module.css';
 
-export default function TaskDetailModal({ task, users = {}, applications = [], onClose, onAssign, onComplete, onDownload, onFeedback }) {
+export default function TaskDetailModal({ task, users = {}, applicant, onClose, onAssign, onComplete, onDownload, onFeedback }) {
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const [collapsedSections, setCollapsedSections] = useState({
     timeline: false,
@@ -17,7 +17,9 @@ export default function TaskDetailModal({ task, users = {}, applications = [], o
     feedback: false
   });
 
+    console.log("number of applicants are",applicant);
   const toggleSection = (section) => {
+      console.log("number of applicants are",applicant);
     setCollapsedSections(prev => ({
       ...prev,
       [section]: !prev[section]
@@ -51,6 +53,7 @@ export default function TaskDetailModal({ task, users = {}, applications = [], o
 
   const CollapsibleSection = ({ title, children, sectionKey, defaultCollapsed = false }) => {
     const isCollapsed = collapsedSections[sectionKey] ?? defaultCollapsed;
+      console.log("number of applicants are",applicant);
     
     return (
       <div className={styles.collapsibleSection}>
@@ -104,12 +107,12 @@ export default function TaskDetailModal({ task, users = {}, applications = [], o
           {/* Applicants List - Collapsible */}
           {task.status === 'open' && (
             <CollapsibleSection 
-              title={`Applicants (${applications.length})`} 
+              title={`Applicants (${applicant.length})`} 
               sectionKey="applicants"
               defaultCollapsed={true}
             >
               <ApplicantList 
-                applications={applications}
+                applicant={applicant}
                 users={users}
                 onAssign={handleAssign}
               />
@@ -158,7 +161,7 @@ export default function TaskDetailModal({ task, users = {}, applications = [], o
 
         {/* Action Buttons */}
         <div className={styles.actions}>
-          {task.status === 'open' && applications.length > 0 && (
+          {task.status === 'open' && applicant.length > 0 && (
             <button className={styles.assignBtn} disabled>
               Assign Freelancer
             </button>

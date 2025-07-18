@@ -1,18 +1,17 @@
-@import "tailwindcss";
-
-/* Font Loading and Fallbacks */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-/* System Font Stack */
 @font-face {
   font-family: 'System UI';
   src: local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI'), local('Roboto'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
   font-display: swap;
 }
 
+@import "tailwindcss";
+
 /* Font Loading Optimization */
 html {
   font-display: swap;
+  scroll-behavior: smooth;
 }
 
 html.fonts-loaded {
@@ -47,7 +46,6 @@ body {
   padding-top: 50px;
 }
 
-/* Font loading transition */
 html.fonts-loaded body {
   transition: font-family 0.3s ease;
 }
@@ -81,7 +79,7 @@ button:focus-visible {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
-  color: white;
+  color: rgb(0, 0, 0);
   margin: 0 0 0.5em 0;
   line-height: 1.2;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -91,11 +89,6 @@ h1, h2, h3, h4, h5, h6 {
 
 * {
   box-sizing: border-box;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
 }
 
 /* Custom scrollbar */
@@ -123,7 +116,7 @@ html {
 }
 
 /* Focus styles for accessibility */
-*:focus {
+:focus {
   outline: 2px solid #14b8a6;
   outline-offset: 2px;
 }
@@ -133,7 +126,7 @@ html {
   body {
     font-size: 14px;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-size: clamp(1.2rem, 4vw, 2rem);
   }

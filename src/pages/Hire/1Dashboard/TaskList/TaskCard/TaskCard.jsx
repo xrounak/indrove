@@ -17,7 +17,7 @@ export default function TaskCard({ task, onView, onDelete, onUpdate }) {
         <span className={styles.detail}>
           <strong>Budget:</strong> ${task.budget}
         </span>
-        <ApplicationCountBadge count={task.applications} />
+        <ApplicationCountBadge count={task.applicant?.length || 0} />
       </div>
 
       <div className={styles.actions}>

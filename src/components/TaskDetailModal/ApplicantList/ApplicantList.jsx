@@ -1,8 +1,8 @@
-import React from 'react';
-import EmptyState from '../../../pages/Hire/1Dashboard/EmptyState/EmptyState';
-import styles from './ApplicantList.module.css';
+import React from "react";
+import EmptyState from "../../../pages/Hire/1Dashboard/EmptyState/EmptyState";
+import styles from "./ApplicantList.module.css";
 
-export default function ApplicantList({ applications, users, onAssign }) {
+export default function ApplicantList({ applicant, users, onAssign }) {
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -15,17 +15,16 @@ export default function ApplicantList({ applications, users, onAssign }) {
     return stars;
   };
 
-  // Check if applications array is empty or undefined
-  const hasApplications = applications && applications.length > 0;
+  const hasApplicant = applicant && applicant.length > 0;
 
-  if (!hasApplications) {
+  if (!hasApplicant) {
     return (
       <div className={styles.container}>
         <h3 className={styles.sectionTitle}>Applicants (0)</h3>
         <EmptyState
           icon="👥"
           title="No Applicants Yet"
-          description="This task hasn't received any applications yet. Consider adjusting the budget or deadline to attract more freelancers."
+          description="This task hasn't received any applicant yet. Consider adjusting the budget or deadline to attract more freelancers."
           variant="applicants"
         />
       </div>
@@ -34,53 +33,49 @@ export default function ApplicantList({ applications, users, onAssign }) {
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.sectionTitle}>Applicants ({applications.length})</h3>
-      
+      <h3 className={styles.sectionTitle}>Applicants ({applicant.length})</h3>
+
       <div className={styles.applicantsList}>
-        {applications.map((application) => {
-          const applicant = users[application.freelancerId];
-          
+        {applicant.map((freelancerUid) => {
+          const applicantUser = users[freelancerUid];
+
           return (
-            <div key={application.id} className={styles.applicantCard}>
+            <div key={freelancerUid} className={styles.applicantCard}>
               <div className={styles.applicantInfo}>
                 <div className={styles.applicantHeader}>
                   <div className={styles.applicantName}>
-                    {applicant ? applicant.name : 'Unknown User'}
+                    {applicantUser?.name || "Unknown User"}
                   </div>
                   <div className={styles.rating}>
-                    {renderStars(applicant?.rating || 0)}
+                    {renderStars(applicantUser?.rating || 0)}
                     <span className={styles.ratingText}>
-                      ({applicant?.rating || 0})
+                      ({applicantUser?.rating || 0})
                     </span>
                   </div>
                 </div>
-                
+
                 <div className={styles.applicantDetails}>
                   <span className={styles.email}>
-                    {applicant ? applicant.email : 'No email available'}
+                    {applicantUser?.email || "No email"}
                   </span>
                   <span className={styles.experience}>
-                    {applicant?.experience || 'No experience listed'}
+                    {applicantUser?.experience || "No experience listed"}
                   </span>
                 </div>
-                
-                {application.message && (
-                  <div className={styles.applicationMessage}>
-                    <strong>Message:</strong> {application.message}
-                  </div>
-                )}
               </div>
-              
+
               <div className={styles.applicantActions}>
-                <button 
+                <button
                   className={styles.viewProfileBtn}
-                  onClick={() => window.open(`/profile/${application.freelancerId}`, '_blank')}
+                  onClick={() =>
+                    window.open(`/profile/${freelancerUid}`, "_blank")
+                  }
                 >
                   View Profile
                 </button>
-                <button 
+                <button
                   className={styles.assignBtn}
-                  onClick={() => onAssign(application.freelancerId)}
+                  onClick={() => onAssign(freelancerUid)}
                 >
                   Assign
                 </button>
@@ -91,4 +86,4 @@ export default function ApplicantList({ applications, users, onAssign }) {
       </div>
     </div>
   );
-} 
+}

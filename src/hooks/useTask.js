@@ -1,30 +1,39 @@
-// src/hooks/useTask.js
 import { useState, useEffect } from "react";
 import * as taskService from "../services/taskService";
 import { useAuth } from "../context/AuthContext";
 
 export const useTask = (uid) => {
-  const { loading, setLoading } = useAuth();
+  const { loading, setLoading,user } = useAuth();
+  const [taskLoading, setTaskLoading] = useState(false); // Local loading for task-specific operations
   const [tasks, setTasks] = useState([]);
+  const [appliedTasks, setAppliedTasks] = useState([]);
+  const [assignedTasks, setAssignedTasks] = useState([]);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [applications, setApplications] = useState([]);
+  const [users, setUsers] = useState({});
   const [error, setError] = useState(null);
+
   const [stats, setStats] = useState({
     open: 0,
     inProgress: 0,
     completed: 0,
     totalSpent: 0,
   });
-  const [selectedTask, setSelectedTask] = useState(null);
-  const [applications, setApplications] = useState([]);
-  const [users, setUsers] = useState({});
 
-  // Auto-fetch stats when uid changes
+  // Auto-fetch stats and client tasks when UID changes
   useEffect(() => {
     if (uid) {
+      loadClientTasks(uid);
       loadStats(uid);
+      loadAppliedTasks();
+      loadAssignedTasks();
     }
   }, [uid]);
 
-  // Load all tasks for the client
+  // ───────────────────────────────
+  // 📦 CLIENT-SIDE FUNCTIONS
+  // ───────────────────────────────
+
   const loadClientTasks = async (uid) => {
     setLoading(true);
     try {
@@ -37,7 +46,6 @@ export const useTask = (uid) => {
     setLoading(false);
   };
 
-  // Load stats
   const loadStats = async (uid) => {
     setLoading(true);
     try {
@@ -50,7 +58,6 @@ export const useTask = (uid) => {
     setLoading(false);
   };
 
-  // Create task
   const postTask = async (taskData) => {
     setLoading(true);
     try {
@@ -62,10 +69,8 @@ export const useTask = (uid) => {
       setError(err);
     }
     setLoading(false);
-    setTasks(tasks);
   };
 
-  // Update task
   const updateTask = async (taskId, updatedData) => {
     setLoading(true);
     try {
@@ -79,9 +84,8 @@ export const useTask = (uid) => {
     setLoading(false);
   };
 
-  // Delete task
   const deleteTask = async (taskId) => {
-    console.log("deleating task of id : ", taskId);
+    console.log("Deleting task of id:", taskId);
     setLoading(true);
     try {
       await taskService.deleteTask(taskId);
@@ -94,25 +98,6 @@ export const useTask = (uid) => {
     setLoading(false);
   };
 
-  // View single task (and open modal)
-  const viewTask = async (taskId) => {
-    setLoading(true);
-    try {
-      const task = await taskService.getTaskById(taskId);
-      setSelectedTask(task);
-    } catch (err) {
-      console.error("Failed to fetch task:", err);
-      setError(err);
-    }
-    setLoading(false);
-  };
-
-  // Close modal
-  const closeTaskModal = () => {
-    setSelectedTask(null);
-  };
-
-  // Assign task
   const assignTask = async (taskId, freelancerId) => {
     const updated = {
       assignedTo: freelancerId,
@@ -120,26 +105,18 @@ export const useTask = (uid) => {
       status: "assigned",
     };
     await updateTask(taskId, updated);
-    setSelectedTask((prev) => ({
-      ...prev,
-      ...updated,
-    }));
+    setSelectedTask((prev) => ({ ...prev, ...updated }));
   };
 
-  // Mark complete
   const completeTask = async (taskId) => {
     const updated = {
       status: "completed",
       completedAt: new Date(),
     };
     await updateTask(taskId, updated);
-    setSelectedTask((prev) => ({
-      ...prev,
-      ...updated,
-    }));
+    setSelectedTask((prev) => ({ ...prev, ...updated }));
   };
 
-  // Submit feedback
   const submitFeedback = async (taskId, rating, message) => {
     const review = {
       rating,
@@ -147,20 +124,127 @@ export const useTask = (uid) => {
       submittedAt: new Date(),
     };
     await updateTask(taskId, { review });
-    setSelectedTask((prev) => ({
-      ...prev,
-      review,
-    }));
+    setSelectedTask((prev) => ({ ...prev, review }));
   };
 
+const loadApplicants = async (task) => {
+  if (!task || !task.applicant || task.applicant.length === 0) return;
+
+  // try {
+  //   const userDocs = await Promise.all(
+  //     task.applicant.map((uid) => taskService.getUserById(uid))
+  //   );
+
+  //   const userMap = {};
+  //   userDocs.forEach((user, idx) => {
+  //     userMap[task.applicant[idx]] = user;
+  //   });
+
+    setApplications(task.applicant); // this is an array of UID strings
+    // setUsers(userMap);
+  // } catch (err) {
+  //   console.error("Failed to load applicants:", err);
+  //   setError(err);
+  // }
+};
+
+
+  // ───────────────────────────────
+  // 👩‍💻 FREELANCER-SIDE FUNCTIONS
+  // ───────────────────────────────
+
+  const loadAppliedTasks = async () => {
+    try {
+      const data = await taskService.getAppliedTasks(uid);
+      setAppliedTasks(data);
+    } catch (err) {
+      console.error("Failed to load applied tasks:", err);
+      setError(err);
+    }
+  };
+
+  const loadAssignedTasks = async () => {
+    try {
+      const data = await taskService.getAssignedTasks(uid);
+      setAssignedTasks(data);
+    } catch (err) {
+      console.error("Failed to load assigned tasks:", err);
+      setError(err);
+    }
+  };
+
+  const applyToTask = async (taskId) => {
+    setTaskLoading(true);
+    try {
+      await taskService.applyToTask(taskId,user.uid);
+      await loadAppliedTasks();
+    } catch (err) {
+      console.error("Failed to apply:", err);
+      setError(err);
+    }
+    setTaskLoading(false);
+  };
+
+  const submitWork = async (taskId, submissionData) => {
+    setTaskLoading(true);
+    try {
+      await taskService.submitTaskWork(taskId, submissionData);
+      await loadAssignedTasks();
+    } catch (err) {
+      console.error("Failed to submit work:", err);
+      setError(err);
+    }
+    setTaskLoading(false);
+  };
+
+  // ───────────────────────────────
+  // 🌐 SHARED FUNCTIONS
+  // ───────────────────────────────
+
+  const getAllTask = async () => {
+    setTaskLoading(true);
+    try {
+      const data = await taskService.fetchAllTasks();
+      setTasks(data);
+    } catch (err) {
+      console.error("Failed to fetch all tasks:", err);
+      setError(err);
+    }
+    setTaskLoading(false);
+  };
+
+  const viewTask = async (taskId) => {
+    setLoading(true);
+    try {
+      const task = await taskService.getTaskById(taskId);
+      console.log(task);
+      setSelectedTask(task);
+      await loadApplicants(task);
+    } catch (err) {
+      console.error("Failed to fetch task:", err);
+      setError(err);
+    }
+    setLoading(false);
+  };
+
+  const closeTaskModal = () => {
+    setSelectedTask(null);
+  };
+
+  // ───────────────────────────────
+  // ✅ EXPORT
+  // ───────────────────────────────
+
   return {
-    loading,
+    loading: taskLoading,
     error,
     tasks,
     stats,
     selectedTask,
-    applications,
+    applicant: applications,
     users,
+    appliedTasks,
+    assignedTasks,
     postTask,
     updateTask,
     deleteTask,
@@ -171,5 +255,11 @@ export const useTask = (uid) => {
     completeTask,
     submitFeedback,
     setLoading,
+    getAllTask,
+    applyToTask,
+    submitWork,
+    reloadAppliedTasks: loadAppliedTasks,
+    reloadAssignedTasks: loadAssignedTasks,
+    
   };
 };

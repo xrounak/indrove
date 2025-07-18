@@ -12,28 +12,28 @@
 }
 
 .fade {
-  animation: fadeIn 0.7s cubic-bezier(0.4,0,0.2,1);
+  animation: fadeIn 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes fadeIn {
-  from { 
-    opacity: 0; 
+  from {
+    opacity: 0;
     transform: translateY(20px);
   }
-  to { 
-    opacity: 1; 
+  to {
+    opacity: 1;
     transform: translateY(0);
   }
 }
 
 /* Alternating section styling */
-/* section:nth-child(odd) {
+section:nth-child(odd) {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
 }
 
 section:nth-child(even) {
   background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
-} */
+}
 
 /* Container styling */
 .container {
@@ -43,7 +43,7 @@ section:nth-child(even) {
 }
 
 /* Section spacing */
-/* section {
+section {
   position: relative;
   overflow: hidden;
 }
@@ -59,7 +59,7 @@ section::before {
               radial-gradient(circle at 70% 80%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
-} */
+}
 
 /* Ensure content is above background effects */
 section > * {

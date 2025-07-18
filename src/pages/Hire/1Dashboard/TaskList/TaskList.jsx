@@ -19,7 +19,7 @@ export default function TaskList() {
     error,
     selectedTask,
     users,
-    applications,
+    applicant,
     viewTask,
     closeTaskModal,
     assignTask,
@@ -96,7 +96,7 @@ export default function TaskList() {
       <TaskDetailModal
         task={selectedTask}
         users={users}
-        applications={applications}
+        applicant={applicant}
         onClose={closeTaskModal}
         onAssign={assignTask}
         onComplete={completeTask}
@@ -121,7 +121,10 @@ export default function TaskList() {
             <div key={task.id}>
               <TaskCard
                 task={task}
-                onView={() => viewTask(task.id)}
+                onView={() => {
+                  viewTask(task.id);
+                  console.log(task);
+                }}
                 onDelete={() => deleteTask(task.id)}
                 onUpdate={() => onupdatetask(task)}
               />
@@ -132,3 +135,4 @@ export default function TaskList() {
     </>
   );
 }
+
